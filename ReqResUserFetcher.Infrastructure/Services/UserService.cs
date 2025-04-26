@@ -42,8 +42,9 @@ public class UserService : IUserService
             return await _retryPolicy.ExecuteAsync(async () =>
             {
                 var response = await _httpClient.GetAsync($"{_baseUrl}/users/{userId}");
+
                 if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
-                    throw new Exception($"User {userId} not found.");
+                    _logger.LogWarning("User with ID {UserId} not found.", userId);
 
                 response.EnsureSuccessStatusCode();
                 var content = await response.Content.ReadAsStringAsync();
