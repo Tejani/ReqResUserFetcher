@@ -22,3 +22,4 @@ A .NET 8 component to fetch user data from a public API (`https://reqres.in/api`
 ```bash
 dotnet build
 dotnet run --project ReqResUserFetcher.ConsoleApp
+dotnet test --project ReqResUserFetcher.Tests
